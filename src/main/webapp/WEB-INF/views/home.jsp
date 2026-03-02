@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Home | Techouts Mart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=20260302"/>
 </head>
 <body class="bg-ink">
 <nav class="navbar navbar-expand-lg nav-glass">
@@ -16,6 +16,7 @@
         <div class="d-flex gap-2">
             <a class="btn btn-sm btn-cart" href="${pageContext.request.contextPath}/cart">Cart (${cartCount})</a>
             <a class="btn btn-sm btn-filter" href="${pageContext.request.contextPath}/orders">My Orders</a>
+            <a class="btn btn-sm btn-filter" href="${pageContext.request.contextPath}/profile">My Profile</a>
             <a class="btn btn-sm btn-logout" href="${pageContext.request.contextPath}/logout">Logout</a>
         </div>
     </div>
@@ -39,7 +40,12 @@
         <div class="panel mb-4">
             <div class="d-flex justify-content-between align-items-center">
                 <h5 class="m-0">Quick Cart</h5>
-                <a class="btn btn-sm btn-checkout" href="${pageContext.request.contextPath}/checkout">Checkout</a>
+                <div class="d-flex gap-2">
+                    <form method="post" action="${pageContext.request.contextPath}/cart/clear" class="d-inline">
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to empty your cart?')">Make Empty Cart</button>
+                    </form>
+                    <a class="btn btn-sm btn-checkout" href="${pageContext.request.contextPath}/checkout">Checkout</a>
+                </div>
             </div>
             <div class="mt-2">Items in cart: ${cartCount}</div>
         </div>
@@ -128,5 +134,43 @@
         </c:otherwise>
     </c:choose>
 </section>
+
+<footer class="site-footer mt-4">
+    <div class="container py-4">
+        <div class="footer-top">
+            <div class="footer-brand-col">
+                <p class="footer-chip mb-2">Member Dashboard</p>
+                <h5 class="footer-brand mb-2">Techouts Mart</h5>
+                <p class="footer-text mb-0">Fast, secure, and reliable shopping for your daily tech needs with smooth order tracking.</p>
+            </div>
+            <div class="footer-links-col">
+                <h6 class="footer-title">Shop</h6>
+                <div class="footer-links">
+                    <a href="${pageContext.request.contextPath}/home">Home</a>
+                    <a href="${pageContext.request.contextPath}/home?category=Laptop">Laptops</a>
+                    <a href="${pageContext.request.contextPath}/home?category=Mobile">Mobiles</a>
+                    <a href="${pageContext.request.contextPath}/home?category=Buds">Buds</a>
+                </div>
+            </div>
+            <div class="footer-links-col">
+                <h6 class="footer-title">Account</h6>
+                <div class="footer-links">
+                    <a href="${pageContext.request.contextPath}/cart">Cart</a>
+                    <a href="${pageContext.request.contextPath}/checkout">Checkout</a>
+                    <a href="${pageContext.request.contextPath}/orders">My Orders</a>
+                    <a href="${pageContext.request.contextPath}/profile">My Profile</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom mt-3">
+            <small>&copy; 2026 Techouts Mart. All rights reserved.</small>
+            <div class="footer-mini-links">
+                <span>Verified Sellers</span>
+                <span>Safe Checkout</span>
+                <span>Quick Returns</span>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

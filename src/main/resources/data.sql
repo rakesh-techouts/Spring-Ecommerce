@@ -1,22 +1,3 @@
-INSERT INTO products(stock,name,price,description,category,image_url) VALUES
-(12,'LENEVO',56785,'RAM:12 GB & ROM: 256 GB','Laptop','https://m.media-amazon.com/images/I/71xHNSCyRsL._AC_UY218_.jpg'),
-(23,'LENEVO',36785,'RAM:8 GB & ROM: 256 GB','Laptop','https://m.media-amazon.com/images/I/516btukUorL._AC_UY218_.jpg'),
-(36,'LENEVO',76785,'RAM:16 GB & ROM: 512 GB','Laptop','https://m.media-amazon.com/images/I/71K-77wHn2L._AC_UY218_.jpg'),
-(678,'DELL',56785,'RAM:12 GB & ROM: 256 GB','Laptop','https://m.media-amazon.com/images/I/7156bBh8W2L._AC_UY218_.jpg'),
-(87,'DELL',46785,'RAM:8 GB & ROM:256 GB' ,'Laptop','https://m.media-amazon.com/images/I/81ImBTVkbmL._AC_UY218_.jpg'),
-(345,'HP',67985,'RAM:12 GB & ROM: 512 GB','Laptop','https://m.media-amazon.com/images/I/71+gQ9gOTuL._AC_UY218_.jpg'),
-(45,'RedMi',36000,'RAM:12 GB & ROM: 256 GB','Mobile','https://m.media-amazon.com/images/I/81dblfYZOYL._AC_UL320_.jpg'),
-(34,'RealMe C35',16000,'RAM:8 GB & ROM: 128 GB','Mobile','https://m.media-amazon.com/images/I/71O5RK8qS3L._AC_UL320_.jpg'),
-(56,'RealMe 15R',28000,'RAM:12 GB & ROM: 128 GB','Mobile','https://m.media-amazon.com/images/I/71+nUkNc2rL._AC_UL320_.jpg'),
-(67,'Samsung',31000,'RAM:12 GB & ROM: 256 GB','Mobile','https://m.media-amazon.com/images/I/71EeBkydf9L._AC_UL320_.jpg'),
-(78,'Apple 17',86000,'RAM:12 GB & ROM: 256 GB','Mobile','https://m.media-amazon.com/images/I/71JGCn1z1TL._AC_UY218_.jpg'),
-(34,'Apple 15 Pro',65000,'RAM:12 GB & ROM: 256 GB','Mobile','https://m.media-amazon.com/images/I/616-Eh2FbPL._AC_UY218_.jpg'),
-(45,'OnePlus Nord CE-5',26000,'RAM:12 GB & ROM: 256 GB','Mobile','https://m.media-amazon.com/images/I/61IOa9IrlaL._AC_UL320_.jpg'),
-(56,'OnePlus',56785,'RAM:12 GB & ROM: 512 GB','Mobile','https://m.media-amazon.com/images/I/61cNdwti0QL._AC_UL320_.jpg'),
-(90,'Realme Buds Air 6',4999,'ANC wireless earbuds with fast charge','Buds','https://m.media-amazon.com/images/I/51RaySTbIVL._AC_UY218_.jpg'),
-(120,'Samsung Galaxy Buds',6999,'Bluetooth earbuds with deep bass','Buds','https://m.media-amazon.com/images/I/61nFKgi0qPL._AC_UY218_.jpg');
-
-
 
 INSERT INTO products(stock,name,price,description,category,image_url) VALUES
 (40,'LENEVO',56785,'A reliable Lenovo laptop designed for multitasking and productivity. Powered with 12GB RAM and 256GB ROM, it ensures smooth performance for students, professionals, and everyday users. Ideal for office tools, browsing, entertainment, and light creative tasks. Long-lasting battery and durable build make it a dependable daily companion.','Laptop','https://m.media-amazon.com/images/I/71xHNSCyRsL._AC_UY218_.jpg'),

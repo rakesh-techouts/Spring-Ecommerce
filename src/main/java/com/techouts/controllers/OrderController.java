@@ -1,6 +1,7 @@
 package com.techouts.controllers;
 
 import com.techouts.entity.CartItem;
+import com.techouts.entity.Order;
 import com.techouts.entity.Products;
 import com.techouts.entity.User;
 import com.techouts.service.CartItemsService;
@@ -26,7 +27,7 @@ public class OrderController {
     private final ProductService productService;
     private final UserService userService;
     private final OrderService orderService;
-
+    //Constructor injection of dependencies
     public OrderController(CartItemsService cartItemsService,
                           ProductService productService,
                           UserService userService,
@@ -64,7 +65,13 @@ public class OrderController {
             return "redirect:/login?authRequired=true";
         }
 
+        User user = userService.findById(userId).orElse(null);
+        if (user == null) {
+            return "redirect:/login?authRequired=true";
+        }
+
         model.addAttribute("username", session.getAttribute("USER_NAME"));
+        model.addAttribute("userAddress", user.getAddress());
         if (productId != null) {
             int directQty = (quantity == null || quantity < 1) ? 1 : quantity;
             Products product = productService.findById(productId).orElse(null);
@@ -132,9 +139,38 @@ public class OrderController {
         }
 
         if (message.toLowerCase().contains("success")) {
-            return "redirect:/orders?message=" + encode(message);
+            return "redirect:/order-confirmation";
         }
         return "redirect:/checkout?warning=" + encode(message);
+    }
+
+    @GetMapping("/order-confirmation")
+    public String orderConfirmation(HttpSession session, Model model) {
+        Long userId = (Long) session.getAttribute("USER_ID");
+        if (userId == null) {
+            return "redirect:/login?authRequired=true";
+        }
+
+        User user = userService.findById(userId).orElse(null);
+        if (user == null) {
+            return "redirect:/login?authRequired=true";
+        }
+
+        // Get the most recent order for this user
+        List<Order> orders = orderService.getOrdersByUserId(userId);
+        if (orders.isEmpty()) {
+            return "redirect:/home?warning=No orders found.";
+        }
+
+        Order recentOrder = orders.get(0); // Get recent order
+        
+        model.addAttribute("user", user);
+        model.addAttribute("orderItems", recentOrder.getOrderItems());
+        model.addAttribute("totalAmount", recentOrder.getTotalAmount());
+        model.addAttribute("shippingAddress", recentOrder.getShippingAddress());
+        model.addAttribute("username", session.getAttribute("USER_NAME"));
+
+        return "order-confirmation";
     }
 
     @GetMapping("/orders")

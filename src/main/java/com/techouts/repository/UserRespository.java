@@ -10,7 +10,10 @@ public interface UserRespository {
     List<User> findAll();
     Optional<User> findById(Long id);
     Optional<User> findByEmail(String email);
+    Optional<User> findByPhone(String phone);
     Optional<User> findByUsername(String username);
     boolean existsByEmail(String email);
-    Optional<User> findByUsernameOrEmail(String identity);
+    boolean existsByPhone(String phone);
+    boolean existsByUsername(String username);
+    Optional<User> findByEmailOrPhone(String identifier);
 }

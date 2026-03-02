@@ -21,6 +21,8 @@ import java.util.List;
 
 @NamedQueries({
         @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
+        @NamedQuery(name = "User.findByPhone", query = "SELECT u FROM User u WHERE u.phone = :phone"),
+        @NamedQuery(name = "User.findByEmailOrPhone", query = "SELECT u FROM User u WHERE u.email = :identifier OR u.phone = :identifier"),
         @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
 })
 
@@ -39,6 +41,9 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
+    private String name;
+
+    @Column(unique = true, nullable = false)
     private String username;
 
     @Column(unique = true, nullable = false)
@@ -46,6 +51,12 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @Column(unique = true, nullable = false)
+    private String phone;
+
+    @Column(length = 500)
+    private String address;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Cart cart;

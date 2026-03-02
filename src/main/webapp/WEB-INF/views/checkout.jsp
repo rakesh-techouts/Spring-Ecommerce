@@ -43,7 +43,12 @@
                     <tbody>
                     <c:forEach var="item" items="${items}">
                         <tr>
-                            <td>${item.product.name}</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="${item.product.imageUrl}" class="me-2" style="width: 40px; height: 40px; object-fit: cover;" alt="${item.product.name}"/>
+                                    <span>${item.product.name}</span>
+                                </div>
+                            </td>
                             <td>Rs.${item.product.price}</td>
                             <td>${item.quantity}</td>
                             <td>Rs.${item.product.price * item.quantity}</td>
@@ -64,7 +69,7 @@
 
                     <div class="mb-3">
                         <label class="form-label">Shipping Address</label>
-                        <textarea class="form-control" name="shippingAddress" rows="3" required></textarea>
+                        <textarea class="form-control" name="shippingAddress" rows="3" required>${userAddress}</textarea>
                     </div>
 
                     <div class="mb-3">

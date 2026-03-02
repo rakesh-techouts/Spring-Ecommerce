@@ -40,9 +40,9 @@ public class UserRepositoryImplementation implements UserRespository {
     }
 
     @Override
-    public Optional<User> findByUsername(String username) {
-        List<User> users = em.createNamedQuery("User.findByUsername", User.class)
-                .setParameter("username", username)
+    public Optional<User> findByPhone(String phone) {
+        List<User> users = em.createNamedQuery("User.findByPhone", User.class)
+                .setParameter("phone", phone)
                 .setMaxResults(1)
                 .getResultList();
         return users.stream().findFirst();
@@ -57,9 +57,34 @@ public class UserRepositoryImplementation implements UserRespository {
     }
 
     @Override
-    public Optional<User> findByUsernameOrEmail(String identity) {
-        List<User> users = em.createQuery("SELECT u FROM User u WHERE u.username = :identity OR u.email = :identity", User.class)
-                .setParameter("identity", identity)
+    public boolean existsByPhone(String phone) {
+        Long count = em.createQuery("SELECT COUNT(u) FROM User u WHERE u.phone = :phone", Long.class)
+                .setParameter("phone", phone)
+                .getSingleResult();
+        return count != null && count > 0;
+    }
+
+    @Override
+    public Optional<User> findByUsername(String username) {
+        List<User> users = em.createNamedQuery("User.findByUsername", User.class)
+                .setParameter("username", username)
+                .setMaxResults(1)
+                .getResultList();
+        return users.stream().findFirst();
+    }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        Long count = em.createQuery("SELECT COUNT(u) FROM User u WHERE u.username = :username", Long.class)
+                .setParameter("username", username)
+                .getSingleResult();
+        return count != null && count > 0;
+    }
+
+    @Override
+    public Optional<User> findByEmailOrPhone(String identifier) {
+        List<User> users = em.createNamedQuery("User.findByEmailOrPhone", User.class)
+                .setParameter("identifier", identifier)
                 .setMaxResults(1)
                 .getResultList();
         return users.stream().findFirst();

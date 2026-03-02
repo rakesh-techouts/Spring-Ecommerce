@@ -67,6 +67,7 @@ public class CartController {
         }
 
         model.addAttribute("items", cartItemsService.getItemsByUserId(userId));
+        model.addAttribute("cartCount", cartItemsService.getCartCount(userId));
         model.addAttribute("total", cartItemsService.getCartTotal(userId));
         model.addAttribute("username", session.getAttribute("USER_NAME"));
 
@@ -162,5 +163,19 @@ public class CartController {
     private String appendQuery(String path, String key, String value) {
         String delimiter = path.contains("?") ? "&" : "?";
         return path + delimiter + key + "=" + encode(value);
+    }
+
+    @PostMapping("/cart/clear")
+    public String clearCart(HttpSession session) {
+        Long userId = (Long) session.getAttribute("USER_ID");
+        if (userId == null) {
+            return "redirect:/login?authRequired=true";
+        }
+
+        String message = cartItemsService.clearCart(userId);
+        if (message.toLowerCase().contains("cleared") || message.toLowerCase().contains("emptied")) {
+            return "redirect:/home?message=" + encode(message);
+        }
+        return "redirect:/home?warning=" + encode(message);
     }
 }

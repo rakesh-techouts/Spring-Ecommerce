@@ -19,21 +19,23 @@ public class CartItemsService {
         this.cartItemsRepository = cartItemsRepository;
     }
 
-    @Transactional
+    @Transactional  //adding product to the cart
     public String addToCart(User user, Products product, int quantity) {
         if (quantity < 1) {
             return "Quantity should be at least 1.";
         }
+        //Checking for the stock present
         if (product.getStock() <= 0) {
             return "Product is out of stock.";
         }
-        if (quantity > product.getStock()) {
+        //request quantity must less than or equal to the quantity
+        if (quantity >= product.getStock()) {
             return "Requested quantity is greater than available stock.";
         }
-
+        //find cart based on user id
         Cart cart = cartItemsRepository.findOrCreateCart(user.getId());
         Optional<CartItem> existingItem = cartItemsRepository.findItemByCartAndProduct(cart.getId(), product.getId());
-
+        //if product present in the cart increase the quantity else add cartiteam
         if (existingItem.isPresent()) {
             CartItem item = existingItem.get();
             int newQty = item.getQuantity() + quantity;
@@ -52,12 +54,12 @@ public class CartItemsService {
         return "Item added to cart.";
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true) //get all CartItems by userId
     public List<CartItem> getItemsByUserId(Long userId) {
         return cartItemsRepository.findItemsByUserId(userId);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true) // Count the CartItems in the Cart by userId
     public long getCartCount(Long userId) {
         return cartItemsRepository.countItemsByUserId(userId);
     }
@@ -70,7 +72,7 @@ public class CartItemsService {
                 .orElse(null);
     }
 
-    @Transactional
+    @Transactional //updating the Quantity of Product in cart
     public String updateQuantity(Long userId, Long itemId, int quantity) {
         Optional<CartItem> optionalItem = cartItemsRepository.findItemById(itemId);
         if (optionalItem.isEmpty()) {
@@ -112,10 +114,23 @@ public class CartItemsService {
         return "Item removed from cart.";
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true) //Getting total price of the CartItems
     public double getCartTotal(Long userId) {
         return getItemsByUserId(userId).stream()
                 .mapToDouble(i -> i.getProduct().getPrice() * i.getQuantity())
                 .sum();
+    }
+
+    @Transactional //clear the cart using userId
+    public String clearCart(Long userId) {
+        List<CartItem> items = getItemsByUserId(userId);
+        if (items.isEmpty()) {
+            return "Cart is already empty.";
+        }
+
+        for (CartItem item : items) {
+            cartItemsRepository.deleteCartItem(item);
+        }
+        return "Cart cleared successfully.";
     }
 }

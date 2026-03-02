@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,8 +38,8 @@
                         <h5 class="m-0">Order #${order.id}</h5>
                         <span class="badge bg-success">${order.status}</span>
                     </div>
-                    <div class="mb-1">Date: ${order.orderDate}</div>
-                    <div class="mb-1">Address: ${order.shippingAddress}</div>
+                    <div class="mb-1">Date: ${order.orderDate.dayOfMonth}/${order.orderDate.monthValue}/${order.orderDate.year} (${order.orderDate.dayOfWeek}) ${order.orderDate.hour}:${String.format('%02d', order.orderDate.minute)}</div>
+                    <div class="mb-1">Shipping Address: ${order.shippingAddress}</div>
                     <div class="mb-2">Payment: ${order.paymentMethod}</div>
                     <table class="table table-dark table-sm align-middle mb-2">
                         <thead>
@@ -47,7 +48,12 @@
                         <tbody>
                         <c:forEach var="item" items="${order.orderItems}">
                             <tr>
-                                <td>${item.product.name}</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="${item.product.imageUrl}" class="me-2" style="width: 40px; height: 40px; object-fit: cover;" alt="${item.product.name}"/>
+                                        <a href="${pageContext.request.contextPath}/product?id=${item.product.id}" class="text-decoration-none text-white">${item.product.name}</a>
+                                    </div>
+                                </td>
                                 <td>Rs.${item.price}</td>
                                 <td>${item.quantity}</td>
                                 <td>Rs.${item.price * item.quantity}</td>

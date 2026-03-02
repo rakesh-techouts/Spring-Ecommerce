@@ -23,13 +23,21 @@
     </c:if>
 
     <form method="post" action="${pageContext.request.contextPath}/register">
-        <div class="mb-3">
-            <label class="form-label">Name</label>
-            <input class="form-control" name="username" type="text" required>
-        </div>
+            <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input class="form-control" name="name" type="text" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input class="form-control" name="username" type="text" required>
+            </div>
         <div class="mb-3">
             <label class="form-label">Email</label>
             <input class="form-control" name="email" type="email" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Phone Number</label>
+            <input class="form-control" name="phone" type="tel" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Password</label>

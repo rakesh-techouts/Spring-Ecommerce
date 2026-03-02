@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Techouts Mart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=20260302"/>
 </head>
 <body class="bg-ink">
 <header class="hero">
@@ -141,5 +141,41 @@
         </c:otherwise>
     </c:choose>
 </section>
+
+<footer class="site-footer mt-4">
+    <div class="container py-4">
+        <div class="footer-top">
+            <div class="footer-brand-col">
+                <p class="footer-chip mb-2">Trusted Since 2026</p>
+                <h5 class="footer-brand mb-2">Techouts Mart</h5>
+                <p class="footer-text mb-0">Your trusted destination for laptops, mobiles, and accessories with secure checkout and fast delivery.</p>
+            </div>
+            <div class="footer-links-col">
+                <h6 class="footer-title">Explore</h6>
+                <div class="footer-links">
+                    <a href="${pageContext.request.contextPath}/">Home</a>
+                    <a href="${pageContext.request.contextPath}/?category=Laptop">Laptops</a>
+                    <a href="${pageContext.request.contextPath}/?category=Mobile">Mobiles</a>
+                    <a href="${pageContext.request.contextPath}/?category=Buds">Buds</a>
+                </div>
+            </div>
+            <div class="footer-links-col">
+                <h6 class="footer-title">Account</h6>
+                <div class="footer-links">
+                    <a href="${pageContext.request.contextPath}/login">Login</a>
+                    <a href="${pageContext.request.contextPath}/register">Register</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom mt-3">
+            <small>&copy; 2026 Techouts Mart. All rights reserved.</small>
+            <div class="footer-mini-links">
+                <span>Secure Payments</span>
+                <span>Fast Delivery</span>
+                <span>24x7 Support</span>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

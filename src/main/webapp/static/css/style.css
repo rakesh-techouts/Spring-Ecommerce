@@ -306,6 +306,106 @@ body {
     margin-bottom: 0.8rem;
 }
 
+.site-footer {
+    border-top: 1px solid #d3ddef;
+    background:
+            radial-gradient(circle at 8% 20%, rgba(15, 76, 129, 0.07) 0%, transparent 35%),
+            radial-gradient(circle at 85% 0%, rgba(31, 122, 95, 0.08) 0%, transparent 30%),
+            linear-gradient(180deg, #f7faff 0%, #eef3fb 100%);
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #d8e2f2;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.footer-chip {
+    display: inline-flex;
+    align-items: center;
+    background: #e9f1ff;
+    color: #113e67;
+    border: 1px solid #c4d8f4;
+    border-radius: 999px;
+    padding: 0.18rem 0.65rem;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.footer-brand {
+    color: #0d2238;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+}
+
+.footer-title {
+    color: #193652;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+.footer-text {
+    color: #4b5f79;
+    max-width: 520px;
+    line-height: 1.5;
+}
+
+.footer-links-col {
+    min-width: 170px;
+}
+
+.footer-links {
+    display: grid;
+    gap: 0.35rem;
+}
+
+.footer-links a {
+    width: fit-content;
+    text-decoration: none;
+    color: #23496f;
+    font-weight: 600;
+    padding: 0.1rem 0;
+    transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.footer-links a:hover {
+    color: #0f4c81;
+    transform: translateX(2px);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+    border-top: 1px dashed #cad8ea;
+    padding-top: 0.9rem;
+    color: #5a6f89;
+}
+
+.footer-mini-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.footer-mini-links span {
+    background: #edf3fb;
+    border: 1px solid #d1deef;
+    color: #2a4e72;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+}
+
 @media (max-width: 767px) {
     .product-image-wrap {
         height: 220px;
@@ -328,6 +428,17 @@ body {
     }
 
     .quick-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+        padding: 0.85rem;
+    }
+
+    .footer-bottom {
         flex-direction: column;
         align-items: flex-start;
     }

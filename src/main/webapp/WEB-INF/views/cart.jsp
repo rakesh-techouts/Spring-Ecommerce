@@ -79,7 +79,7 @@
             <div class="panel mt-4 d-flex justify-content-between align-items-center">
                 <div>
                     <h5 class="m-0">Grand Total: Rs.${total}</h5>
-                    <small class="text-muted">${items.size()} item(s) in cart</small>
+                    <small class="text-muted">${cartCount} item(s) in cart</small>
                 </div>
                 <a class="btn btn-checkout" href="${pageContext.request.contextPath}/checkout">Proceed to Checkout</a>
             </div>

@@ -33,8 +33,9 @@
 
     <form method="post" action="${pageContext.request.contextPath}/login">
         <div class="mb-3">
-            <label class="form-label">Username or Email</label>
-            <input class="form-control" type="text" name="identity" required/>
+            <label class="form-label">Username / Email / Phone</label>
+            <input class="form-control" type="text" name="identity" required 
+                   placeholder="Enter username, email or phone number"/>
         </div>
         <div class="mb-3">
             <label class="form-label">Password</label>
